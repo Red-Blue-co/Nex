@@ -40,8 +40,7 @@ class MongoDB_Helper {
       const pass = NE_Environment.getEnvironmentVariable("MONGODB_PASSWORD");
 
       if (!url || !dbName) {
-        logMessage({ level: "WARNING", message: "MongoDB Config missing. Skipping connection." });
-        return null;
+        return;
       }
 
       let connectionUri = url.startsWith("mongodb") ? url : `mongodb://${url}`;

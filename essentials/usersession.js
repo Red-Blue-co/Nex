@@ -2,8 +2,7 @@
 
 const jwt = require('jsonwebtoken');
 const { ApplicationError, logMessage } = require('./applicationerror');
-const { VW_Environment: Environment } = require('./settings');
-
+const { NE_Environment: Environment } = require('./settings');
 
 const ActiveSessions = new Map();
 class NE_SessionManager {

@@ -213,25 +213,59 @@ class NE_Utils {
     }
 
     static async processCli() {
-        const { projectsetup, help, configure, projectstructure } = NE_Utils.getCommandLineArguments();
+        const inquirer = require('inquirer');
+        const args = process.argv.slice(2);
+        
+        // Intercept standard `--projectsetup` or the new `setup` string for our wizard!
+        if (args.includes('setup') || args.includes('--projectsetup')) {
+            console.log('\nNex CLI Setup\n');
+            
+            const answers = await inquirer.prompt([
+                {
+                   type: 'list',
+                   name: 'action',
+                   message: 'What would you like to initialize?',
+                   choices: [
+                       '🚀 Scaffold Project Architecture (Routes & Settings)',
+                       '⚙️  Configure Database Environment (.conf)',
+                       '📚 Help & Documentation',
+                       '❌ Exit'
+                   ]
+                }
+            ]);
 
-        if (projectsetup !== undefined) {
-            NE_Utils.projectSetup(projectsetup);
-            process.exit(0);
-        } else if (help !== undefined) {
-            if (NE_Manual && typeof NE_Manual.showInteractiveHelp === 'function') {
-                await NE_Manual.showInteractiveHelp();
-            } else {
-                console.log("Help module loaded, but showInteractiveHelp is missing.");
+            if (answers.action.includes('Scaffold Project Architecture')) {
+                 console.log("\n\x1b[32m✔ Initializing Backend Infrastructure...\x1b[0m");
+                 NE_Utils.projectSetup("");
+                 console.log("\x1b[32m✔ Setup complete! Run `npx nex setup` again to configure your DB!\x1b[0m");
+            } else if (answers.action.includes('Configure Database Environment')) {
+                 // Prompt for environment name, default to 'Local'
+                 const { env } = await inquirer.prompt([
+                     {
+                         type: 'input',
+                         name: 'env',
+                         message: 'Enter environment name (default: Local):',
+                         default: 'Local'
+                     }
+                 ]);
+                 await NE_Utils.configureEnvironment(env);
+             } else if (answers.action.includes('Help')) {
+                 if (NE_Manual && typeof NE_Manual.showInteractiveHelp === 'function') {
+                     await NE_Manual.showInteractiveHelp();
+                 } else {
+                     console.log("\n\x1b[33mOops! The Help module isn't loaded properly.\x1b[0m\n");
+                 }
             }
             process.exit(0);
-        } else if (projectstructure !== undefined) {
+
+        } else if (args.includes('configure') || args.includes('--configure')) {
+            await NE_Utils.configureEnvironment(args[args.indexOf('configure') + 1]);
+            process.exit(0);
+        } else if (args.includes('projectstructure') || args.includes('--projectstructure')) {
             NE_Utils.updateProjectStructure();
             process.exit(0);
-        } else if (configure !== undefined) {
-            await NE_Utils.configureEnvironment(configure);
-            process.exit(0);
         }
+
         return NE_Utils.getCommandLineArguments();
     }
 
@@ -269,9 +303,9 @@ class NE_Utils {
 
     static async configureEnvironment(envName) {
         if (!envName) {
-            envName = process.env["NE_ENV"];
-            if (!envName) throw new ApplicationError("Environment name not specified. Use --configure <name> or set NE_ENV.");
+            envName = process.env["NE_ENV"] || "Local";
         }
+        if (!envName) throw new ApplicationError("Environment name not specified. Use --configure <name> or set NE_ENV.");
 
         const configFile = path.join(NE_Utils.rootDir, NE_Utils.configFile);
         const configObject = fs.existsSync(configFile) ? NE_Utils.loadConfig(configFile) : {};

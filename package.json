@@ -1,15 +1,14 @@
 {
-  "name": "node_helper",
+  "name": "nexs",
   "version": "1.0.0",
-  "description": "Robust utility classes and functions to streamline Node.js development workflows.",
+  "description": "High-performance framework extending Express, delivering automated CLI bootstrap, multi-database pooling, secure JWT sessions, intelligent file routing, and template emails in one unified system.",
   "main": "index.js",
   "bin": {
-    "ne-helper": "./index.js"
+    "nexs": "./cli.js"
   },
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "setup": "node index.js --projectsetup",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sherin V",
@@ -17,26 +16,22 @@
   "dependencies": {
     "axios": "^1.6.0",
     "body-parser": "^1.20.2",
-    "canvas": "^3.2.0",
+    "canvas": "^2.11.2",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
-    "ejs": "^3.1.9",
     "express": "^4.18.2",
     "inquirer": "^8.2.6",
     "jsonwebtoken": "^9.0.2",
     "moment": "^2.29.4",
     "mongodb": "^6.3.0",
     "mssql": "^10.0.1",
-    "multer": "^1.4.5-lts.1",
+    "multer": "^2.1.1",
     "mysql2": "^3.6.5",
     "nodemailer": "^6.9.7",
-    "reedsolomon": "^1.0.0",
     "socket.io": "^4.7.2"
   },
   "devDependencies": {
-    "nodemon": "^3.0.1",
-    "webpack": "^5.89.0",
-    "webpack-cli": "^5.1.4"
+    "nodemon": "^3.0.1"
   }
 }

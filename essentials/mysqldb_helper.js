@@ -22,8 +22,7 @@ class MySQLDB_Helper {
       const { database } = config;
       
       if (!database) {
-        logMessage({ level: "WARNING", message: "MySQL Database name missing in config. Skipping connection." });
-        return;
+        return Promise.resolve();
       }
 
       if (!connectionPools[database]) {

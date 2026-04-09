@@ -10,10 +10,14 @@ const { ApplicationError, logMessage } = require('./applicationerror');
 const { NE_HttpServer } = require("./httphelper");
 
 class Implementation_Manager {
-  
+
   static initializeImplementation = async (dbKeysMappingTable = null, dbType = 'mysql') => {
     try {
-       logMessage({ level: 'INFO', message: "Initializing Implementation..." });
+      logMessage({ level: 'INFO', message: "Initializing Implementation..." });
+
+      // Auto-boot the environment map natively so it doesn't crash db pooling
+      await NE_Environment.setEnvironment();
+
       await initDbConnectionsForImplementation();
     } catch (err) {
       logMessage({ level: 'ERROR', message: `Error in Initialization: ${err.message}`, errorObject: err });
@@ -61,7 +65,7 @@ const initDbConnectionsForImplementation = async () => {
 
 
 const initIndividualImplementationDbConnection = async () => {
-  
+
   let dbTypes = NE_Environment.getEnvironmentVariable('DB_TYPE');
 
   const typesToCheck = Array.isArray(dbTypes) ? dbTypes : (dbTypes || '').split(',');
@@ -90,7 +94,7 @@ const getSystemParametersForSolution = async (sysParamTableName = null) => {
 
 const callHTTPRequest = (apiName, method, datajson = null) => {
   return new Promise((resolve, reject) => {
-    
+
     let data = "";
     let headersObj = { 'Content-Type': 'application/json' };
 
@@ -118,7 +122,7 @@ const callHTTPRequest = (apiName, method, datajson = null) => {
       res.on('end', () => {
         try {
           resolve(JSON.parse(Buffer.concat(dataArr).toString()));
-        } catch(parseErr) {
+        } catch (parseErr) {
           reject(new ApplicationError({ errorObject: parseErr }));
         }
       });

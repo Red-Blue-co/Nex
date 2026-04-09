@@ -21,7 +21,6 @@ class MsSQLDB_Helper {
       const config = MsSQLDB_Helper.getDbConfig();
       
       if (!config.server || !config.database) {
-        logMessage({ level: "WARNING", message: "MSSQL Config missing. Skipping connection." });
         return null;
       }
       _connectionPool = await new sql.ConnectionPool(config).connect();
