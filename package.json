@@ -1,14 +1,16 @@
 {
-  "name": "nexs",
-  "version": "1.0.0",
+  "name": "@sherinv/nexs",
+  "version": "1.0.2",
   "description": "High-performance framework extending Express, delivering automated CLI bootstrap, multi-database pooling, secure JWT sessions, intelligent file routing, and template emails in one unified system.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "bin": {
-    "nexs": "./cli.js"
+    "nexs": "./dist/cli.js"
   },
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
+    "build": "node build.js",
+    "prepublishOnly": "npm run build",
+    "start": "node dist/index.js",
+    "dev": "nodemon dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sherin V",
@@ -32,6 +34,7 @@
     "socket.io": "^4.7.2"
   },
   "devDependencies": {
+    "javascript-obfuscator": "^5.4.1",
     "nodemon": "^3.0.1"
   }
 }

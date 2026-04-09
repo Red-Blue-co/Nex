@@ -7,7 +7,6 @@
 <p>
   <img src="https://img.shields.io/badge/Node.js-3b82f6?style=for-the-badge&logo=node.js&logoColor=white" />
   <img src="https://img.shields.io/badge/Website-sherin.fun-eab308?style=for-the-badge&logo=firefox&logoColor=white" />
-  <img src="https://img.shields.io/badge/GitHub-Red--Blue--co-22c55e?style=for-the-badge&logo=github&logoColor=white" />
 </p>
 
 <strong style="color:#94a3b8;">Robust utility classes and functions to streamline Node.js development workflows.</strong>
@@ -72,11 +71,11 @@ Built for developers who want **clean, modular, scalable backend architecture**.
 <img src="https://capsule-render.vercel.app/api?type=rect&height=120&color=0:0f0505,25:1a0a0a,50:ef4444,75:3b82f6,100:000000&text=INSTALLATION&fontColor=f8fafc&fontSize=30" />
 
 ```bash
-# Clone the repository
-git clone https://github.com/Red-Blue-co/Nex.git
+# Install globally or locally via NPM
+npm install @sherinv/nexs
 
-# Install dependencies
-npm install
+# Or scaffold a fresh project instantly
+npx @sherinv/nexs
 ```
 
 ---
@@ -84,53 +83,46 @@ npm install
 <!-- USAGE -->
 <img src="https://capsule-render.vercel.app/api?type=rect&height=120&color=0:0f0505,25:1a0a0a,50:ef4444,75:3b82f6,100:000000&text=USAGE&fontColor=f8fafc&fontSize=30" />
 
-### 1. Initialization
+### 1. The Automated CLI Wizard (Recommended)
 
-```javascript
-const { Implementation_Manager } = require('./index');
+Forget configuring database variables manually! The framework ships with a powerful interactive command-line utility. Just spin up an empty folder and run:
 
-// Define your routes
-const routes = (app) => {
-  app.get('/', (req, res) => res.send('Nex core is running!'));
-};
-
-// Initialize DBs and Start Server
-const startApp = async () => {
-    try {
-        await Implementation_Manager.initializeImplementation();
-        Implementation_Manager.initializeHttpAndStartServer(routes);
-    } catch (error) {
-        console.error("Startup failed:", error);
-    }
-};
-
-startApp();
+```bash
+npx @sherinv/nexs
 ```
 
-### 2. Environment Configuration (`.env`)
+**The wizard instantly performs the followering heavy lifting:**
+1. Generates `package.json` configurations and connects your entry paths.
+2. Triggers an Interactive Prompt asking for your preferred **Database Engine** (MySQL, Mongo, or MsSQL).
+3. Securely establishes your network ports and database credentials dynamically.
+4. Generates a `.conf` environment payload invisibly without hardcoding passwords into JavaScript.
+5. Scaffolds a functioning HTTP routing structure (`/routes/ping`) testing the Express connection directly out of the box!
 
-```env
-{
-  "Local": {
-    "APPLICATION_PORT_NUMBER": 3000,
-    
-    "DB_TYPE": ["mysql"],
-    "MYSQLDB_HOST": "localhost",
-    "MYSQLDB_PORT": 3306,
-    "MYSQLDB_USER": "root",
-    "MYSQLDB_PASSWORD": "123",
-    "MYSQLDB_NAME": "test-db",
+Once the bootstrap completes, simply type:
+```bash
+npm start
+```
+Your server will instantly spin up natively mapping all databases instantly.
 
-    "EMAIL_HOST": "mail.com",
-    "EMAIL_PORT": 465,
-    "EMAIL_USER": "admin@sherin.fun",
-    "EMAIL_PASSWORD": "123",
-    "EMAIL_FROM": "Shop Admin <admin@sherin.fun>",
-    "EMAIL_SECURE": true,
-    "EMAIL_TEMPLATE_PATH": "../../",
-    "EMAIL_SENDERNAME": "Shop Admin"
-  }
-}
+### 2. Manual Integration (Non-CLI)
+
+If you're hooking Nexs into a pre-existing project instead of making a new one, you can integrate it manually using the standard `Implementation_Manager`:
+
+```javascript
+const { Implementation_Manager } = require('@sherinv/nexs');
+
+// 1. Define your custom app routing logic
+const routes = (app) => {
+  app.get('/', (req, res) => res.send('Nexs Framework is deeply connected!'));
+};
+
+(async () => {
+    // 2. Initialize databases, caches, and read configs dynamically
+    await Implementation_Manager.initializeImplementation();
+
+    // 3. Boot HTTP server mapping the routes directly 
+    Implementation_Manager.initializeHttpAndStartServer(routes);
+})();
 ```
 
 ---

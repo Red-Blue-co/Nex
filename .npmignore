@@ -1,0 +1,15 @@
+# Exclude raw source directories
+/essentials/
+/helpfiles/
+cli.js
+index.js
+build.js
+test-sandbox/
+test-sandbox-*/
+nex-global-test*/
+*.tgz
+.vscode/
+.env
+
+# Ensure the dist folder IS pushed!
+!dist/
