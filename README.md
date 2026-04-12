@@ -72,10 +72,10 @@ Built for developers who want **clean, modular, scalable backend architecture**.
 
 ```bash
 # Install globally or locally via NPM
-npm install @sherinv/nexs
+npm install sv-nex
 
 # Or scaffold a fresh project instantly
-npx @sherinv/nexs
+npx sv-nex
 ```
 
 ---
@@ -88,7 +88,7 @@ npx @sherinv/nexs
 Forget configuring database variables manually! The framework ships with a powerful interactive command-line utility. Just spin up an empty folder and run:
 
 ```bash
-npx @sherinv/nexs
+npx sv-nex
 ```
 
 **The wizard instantly performs the followering heavy lifting:**
@@ -109,7 +109,7 @@ Your server will instantly spin up natively mapping all databases instantly.
 If you're hooking Nexs into a pre-existing project instead of making a new one, you can integrate it manually using the standard `Implementation_Manager`:
 
 ```javascript
-const { Implementation_Manager } = require('@sherinv/nexs');
+const { Implementation_Manager } = require('sv-nex');
 
 // 1. Define your custom app routing logic
 const routes = (app) => {
