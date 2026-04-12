@@ -42,6 +42,7 @@ async function bootstrap() {
         { type: 'input', name: 'database', message: 'Database name:', default: '' }
     ]);
     // Build config object
+    const confObj = {};
     confObj[env] = {
         APPLICATION_PORT_NUMBER: Number(answers.port),
         DB_TYPE: dbAnswers.dbTypes && dbAnswers.dbTypes.length > 0 ? dbAnswers.dbTypes : ['mongodb'], // Default to mongo if skip
