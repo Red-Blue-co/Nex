@@ -34,7 +34,6 @@ const { UserSessions_Helper, LoggedInUser } = require('./essentials/usersession'
 const { Implementation_Manager } = require('./essentials/implementationmanager');
 
 // --- 5. Feature Helpers ---
-const { Websocket_Helper } = require('./essentials/wsockethelper');
 const { NE_EmailHelper, NE_EmailSender } = require('./essentials/emailhelper');
 const { UploadHelper } = require('./essentials/fileuploadhelper');
 
@@ -60,7 +59,6 @@ module.exports = {
   UserSessions_Helper,
   LoggedInUser,
   Implementation_Manager,
-  Websocket_Helper,
   NE_EmailHelper,
   NE_EmailSender,
   UploadHelper,

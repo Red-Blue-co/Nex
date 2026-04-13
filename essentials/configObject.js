@@ -88,8 +88,8 @@ const NE_ConfigSetup = {
         infoText: "JWT Configuration",
         JWT_GROUP: [
             { type: "string", configKey: "JWT_SECRET", question: "JWT Secret Key" },
-            { type: "string", configKey: "NO_TOKEN_APIS", question: "Public APIs (comma separated, e.g., /login,/register)" },
-            { type: "string", configKey: "REQUEST_PARAMS_FROM_TOKEN", question: "Token Payload Keys to inject into Request (e.g., userId,role)" },
+            { type: "string", configKey: "NO_TOKEN_APIS", question: "Public APIs (comma separated, e.g., /login,/register)", default: "/login,/register" },
+            { type: "string", configKey: "REQUEST_PARAMS_FROM_TOKEN", question: "Token Payload Keys to inject into Request (e.g., userId,role)", default: "userId,role" },
             { 
                 type: "object", 
                 configKey: "TOKEN_EXPIRY", 

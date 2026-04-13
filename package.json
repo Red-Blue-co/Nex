@@ -1,6 +1,6 @@
 {
   "name": "sv-nex",
-  "version": "1.0.3",
+  "version": "1.0.7",
   "description": "High-performance framework extending Express, delivering automated CLI bootstrap, multi-database pooling, secure JWT sessions, intelligent file routing, and template emails in one unified system.",
   "main": "dist/index.js",
   "bin": {

@@ -19,10 +19,10 @@
 
 Welcome to the central hub for the `sv-nex` framework. Select a topic below to dive into the documentation. Everything from scaffolding a fresh Express server to managing JWT sessions is covered here.
 
-### 🚀 Getting Started Flow
-* [**Installation & Scaffolding**](./getting-started.md) — How to bootstrap new local or global projects using the CLI Wizard.
-* [**Routing & Endpoints**](./routing-endpoints.md) — How the framework maps Express endpoints dynamically without clutter.
-* [**Database Connectivity**](./database-connection.md) — How to securely harness MySQL, MS SQL, or MongoDB natively.
+### 🚀 Next Gen Getting Started
+* [**Installation & Scaffolding**](./getting-started.md) — How to bootstrap a production-ready server in seconds using the new unified CLI Menu.
+* [**Routing & Endpoints**](./routing-endpoints.md) — How the framework maps Express endpoints dynamically using our automated structure engine.
+* [**Database Connectivity**](./database-connection.md) — How to securely harness MySQL, MS SQL, or MongoDB with our zero-boilerplate wrappers.
 
 ---
 
