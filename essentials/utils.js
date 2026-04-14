@@ -190,7 +190,7 @@ class NE_Utils {
     static async processCli() {
         const args = process.argv.slice(2);
         
-        if (args.includes('setup') || args.includes('--projectsetup') || args.length === 0) {
+        if (args.includes('setup') || args.includes('--projectsetup') || (args.length === 0 && !process.env.NE_ENV)) {
             console.log('\n\x1b[36m========== NEX FRAMEWORK CLI ==========\x1b[0m\n');
             
             const answers = await inquirer.prompt([
