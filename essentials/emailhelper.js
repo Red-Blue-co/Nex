@@ -155,6 +155,11 @@ class NE_EmailHelper {
 
     static setupEmailSender(name = "_", config, templates = {}) {
         const cleanConfig = this.transformSMTPConfig(config);
+        if (!cleanConfig) {
+            // Missing SMTP user/password/host: keep the app running without this sender
+            logMessage({ level: 'WARNING', message: `Email sender [${name}] not set up: SMTP host, user or password is missing.` });
+            return null;
+        }
         const sender = new NE_EmailSenderImpl(cleanConfig);
         if (Object.keys(templates).length) sender.setEmailTemplates(templates);
         senderRegistry[name] = sender;

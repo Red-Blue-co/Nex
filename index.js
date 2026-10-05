@@ -39,8 +39,6 @@ const { UploadHelper } = require('./essentials/fileuploadhelper');
 
 // --- 6. Utility Functions ---
 const {NE_Utils }= require('./essentials/utils')
-const HexGenerator = require('./essentials/qrCode');
-const RobustHexScanner  = require('./essentials/qrScanner');
 
 const use = (fn) => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);
 
@@ -63,6 +61,9 @@ module.exports = {
   NE_EmailSender,
   UploadHelper,
   NE_Utils,
-  HexGenerator,
-  RobustHexScanner
 };
+
+// QR helpers need the optional `canvas` package, so they load only when first used.
+// Apps that never touch QR codes can install and run sv-nex without canvas.
+Object.defineProperty(module.exports, 'HexGenerator', { enumerable: true, get: () => require('./essentials/qrCode') });
+Object.defineProperty(module.exports, 'RobustHexScanner', { enumerable: true, get: () => require('./essentials/qrScanner') });
