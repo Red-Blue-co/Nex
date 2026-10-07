@@ -148,6 +148,16 @@ This project is licensed under the **Red-Blue-co License**.
 
 ---
 
+## Author
+
+**Sherin Varghese**, software engineer in Berlin
+
+- Website and portfolio: [sherin.fun](https://sherin.fun)
+- GitHub: [@Sherin-V](https://github.com/Sherin-V)
+- LinkedIn: [Sherin Varghese](https://www.linkedin.com/in/sherin-varghese-04b6831ba/)
+- Email: [admin@sherin.fun](mailto:admin@sherin.fun)
+
+
 <div align="center">
 
 <img src="https://img.shields.io/badge/Built%20with%20❤️%20by-Sherin%20Varghese-ef4444?style=flat-square" />
